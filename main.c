@@ -6,15 +6,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SIZE 1000 // Define a size
+#define SIZE 1000 // Define a global size.
+int matrix[SIZE][SIZE]; // Define a global 2D matrix.
 
 int main() {
-    int matrix[SIZE][SIZE]; // Define a 2D matrix.
     int i, j, dice, degree = 0, edge = 0;  // Declare some integer type variable.
-    double computational_time_ns; // Declare double type variable to calculate program run time.
+    double program_run_time; // Declare double type variable to calculate program run time.
 
     // This program will create different sequence of random numbers on every program run.
-    srand(time(0)); // Use current time as seed for random generator
+    srand(time(0)); // Use current time(in second) as seed for random generator.
 
     // This for loop helps to create a SIZE * SIZE matrix.
     for (i = 0; i < SIZE; i++) {
@@ -48,18 +48,19 @@ int main() {
 
     clock_t end = clock(); // End counting program run time.
 
-    if (degree % (edge * 2) == 0) {
-        printf("Handshake Logic proved.\n");
+    // By this logic we can prove handshake logic.
+    if (degree == (edge * 2)) { // We know if degree is equal to 2 times of edge then handshake is proved.
+        printf("Handshake Logic proved.\n\n");
     } else {
         printf("Handshake Logic not proved.\n");
         exit(0);
     }
 
+    printf("n = %d\n", SIZE);
     printf("degree = %d\nedges = %d\n", degree, edge);
 
-    computational_time_ns = ((double) (end - begin) / CLOCKS_PER_SEC);
-    printf("Program runtime = %.3lf second or %.2lf nano second.\n", computational_time_ns,
-           computational_time_ns * 1000000000);
+    program_run_time = ((double) (end - begin) / CLOCKS_PER_SEC) * 1000000000;
+    printf("Program runtime = %.2lf nano second.\n", program_run_time);
 
     return 0;
 }
