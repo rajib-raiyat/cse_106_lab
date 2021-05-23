@@ -21,8 +21,8 @@ int main() {
     for (i = 0; i < SIZE; i++) {
         for (j = i; j < SIZE; j++) {
             dice = rand() % 2; // Generate random value and take the reminder value.
-            matrix[i][j] = dice; // Put the reminder value.
-            matrix[j][i] = dice; // Put the reminder value.
+            matrix[i][j] = dice; // Put the reminder value in row.
+            matrix[j][i] = dice; // Put the reminder value in column.
         }
     }
 
@@ -62,8 +62,10 @@ int main() {
     printf("n = %d\n", SIZE);
     printf("sum of degree = %d\nsum of edges = %d\n", degree, edge);
 
+    // CLOCKS_PER_SEC is a constant which is declared in <time.h>.
+    // To get the CPU time used by a task within a C application
     program_run_time = ((double) (time_end - time_start) / CLOCKS_PER_SEC) * 1000000000;
-    printf("Total Computing time (except printing) = %.2lf nano second.\n", program_run_time);
+    printf("Total Computing time (except printing) = %.2lf ns.\n", program_run_time);
 
     return 0;
 }
