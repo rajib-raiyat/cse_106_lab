@@ -10,23 +10,25 @@
 int matrix[SIZE][SIZE]; // Define a global 2D matrix.
 
 int main() {
+    clock_t time_start, time_end;
     int i, j, dice, degree = 0, edge = 0;  // Declare some integer type variable.
     double program_run_time; // Declare double type variable to calculate program run time.
 
     // This program will create different sequence of random numbers on every program run.
     srand(time(0)); // Use current time(in second) as seed for random generator.
 
-    // This for loop helps to create a SIZE * SIZE matrix.
+    // Randomly generating a directed graph with adjacency Matrix.
     for (i = 0; i < SIZE; i++) {
         for (j = i; j < SIZE; j++) {
-            dice = rand() % 2;
-            matrix[i][j] = dice;
-            matrix[j][i] = dice;
+            dice = rand() % 2; // Generate random value and take the reminder value.
+            matrix[i][j] = dice; // Put the reminder value.
+            matrix[j][i] = dice; // Put the reminder value.
         }
     }
 
-    clock_t begin = clock(); // Start counting program run time.
+    time_start = clock(); // Start counting program run time.
 
+    // calculating the sum  degree
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             if (i == j && matrix[i][j] == 1) {
@@ -38,6 +40,7 @@ int main() {
         }
     }
 
+    // calculating the sum of edge
     for (i = 0; i < SIZE; i++) {
         for (j = i; j < SIZE; j++) {
             if (matrix[i][j] == 1) {
@@ -46,7 +49,7 @@ int main() {
         }
     }
 
-    clock_t end = clock(); // End counting program run time.
+    time_end = clock(); // End counting program run time.
 
     // By this logic we can prove handshake logic.
     if (degree == (edge * 2)) { // We know if degree is equal to 2 times of edge then handshake is proved.
@@ -57,10 +60,10 @@ int main() {
     }
 
     printf("n = %d\n", SIZE);
-    printf("degree = %d\nedges = %d\n", degree, edge);
+    printf("sum of degree = %d\nsum of edges = %d\n", degree, edge);
 
-    program_run_time = ((double) (end - begin) / CLOCKS_PER_SEC) * 1000000000;
-    printf("Program runtime = %.2lf nano second.\n", program_run_time);
+    program_run_time = ((double) (time_end - time_start) / CLOCKS_PER_SEC) * 1000000000;
+    printf("Total Computing time (except printing) = %.2lf nano second.\n", program_run_time);
 
     return 0;
 }
