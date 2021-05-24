@@ -14,15 +14,15 @@ int main() {
     int i, j, dice, degree = 0, edge = 0;  // Declare some integer type variable.
     double program_run_time; // Declare double type variable to calculate program run time.
 
-    // This program will create different sequence of random numbers on every program run.
+    // This program will create a different sequence of random numbers on every program run.
     srand(time(0)); // Use current time(in second) as seed for random generator.
 
     // Randomly generating a directed graph with adjacency Matrix.
     for (i = 0; i < SIZE; i++) {
         for (j = i; j < SIZE; j++) {
             dice = rand() % 2; // Generate random value and take the reminder value.
-            matrix[i][j] = dice; // Put the reminder value in row.
-            matrix[j][i] = dice; // Put the reminder value in column.
+            matrix[i][j] = dice; // Put the remainder value in row.
+            matrix[j][i] = dice; // Put the remainder value in column.
         }
     }
 
