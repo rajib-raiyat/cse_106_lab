@@ -41,4 +41,6 @@ C = 2 & g(x) = x^2
 Time complexity is 0(x^2).
 ```
 
-Graph
+### Graph
+
+![alt text](graph.png "Graph of Computational time(ns) vs n (vertices)")
